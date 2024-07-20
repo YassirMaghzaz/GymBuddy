@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_20_110005) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_20_110610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_20_110005) do
     t.datetime "end_at", precision: nil
     t.float "target_weight"
     t.float "current_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "preferences", force: :cascade do |t|
+    t.time "workout_time"
+    t.string "workout_days"
+    t.string "workout_type"
+    t.string "intensity_level"
+    t.string "equipment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
