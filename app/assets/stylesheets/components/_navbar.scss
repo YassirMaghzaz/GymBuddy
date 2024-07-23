@@ -1,12 +1,12 @@
 .navbar {
   background-color: black;
   color: white;
+  height: 7vh;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-radius: 0 0 15px 15px;
   position: relative;
 }
 
