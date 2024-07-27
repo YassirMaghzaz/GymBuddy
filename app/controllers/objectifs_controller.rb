@@ -1,21 +1,21 @@
-class ObjectifsController < ApplicationController
-  before_action :set_objectif, only: [:show, :edit, :update, :destroy]
+class ObjectivesController < ApplicationController
+  before_action :set_objective, only: [:show, :edit, :update, :destroy]
 
   def index
-    @objectifs = Objectif.all
+    @objectives = objective.all
   end
 
   def show
   end
 
   def new
-    @objectif = objectif.new
+    @objective = objective.new
   end
 
   def create
-    @objectif = objectif.new(objectif_params)
-    if @objectif.save
-      redirect_to @objectif, notice: 'objectif was successfully created.'
+    @objective = objective.new(objective_params)
+    if @objective.save
+      redirect_to @objective, notice: 'objective was successfully created.'
     else
       render :new
     end
@@ -25,25 +25,25 @@ class ObjectifsController < ApplicationController
   end
 
   def update
-    if @objectif.update(objectif_params)
-      redirect_to @objectif, notice: 'objectif was successfully updated.'
+    if @objective.update(objective_params)
+      redirect_to @objective, notice: 'objective was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
-    @objectif.destroy
-    redirect_to objectifs_url, notice: 'objectif was successfully destroyed.'
+    @objective.destroy
+    redirect_to objectives_url, notice: 'objective was successfully destroyed.'
   end
 
   private
 
-  def set_objectif
-    @objectif = objectif.find(params[:id])
+  def set_objective
+    @objective = objective.find(params[:id])
   end
 
-  def objectif_params
-    params.require(:objectif).permit(:title, :description, :status, :progress, :start_at, :end_at, :target_weight, :current_weight, :profile_id)
+  def objective_params
+    params.require(:objective).permit(:title, :description, :status, :progress, :start_at, :end_at, :target_weight, :current_weight, :profile_id)
   end
 end
