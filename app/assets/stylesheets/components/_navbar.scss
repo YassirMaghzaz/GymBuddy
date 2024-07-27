@@ -1,12 +1,34 @@
-.navbar-lewagon {
+.navbar {
+  background-color: black;
+  color: white;
+  height: 7vh;
+  padding: 10px;
+  display: flex;
   justify-content: space-between;
-  background: white;
+  align-items: center;
+  border-radius: 0 0 15px 15px;
+  position: relative;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.logo {
+  color: white;
+  font-family: Quicksand;
+  font-size: 1.2em;
+  font-weight:400;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.auth-btn {
+  color: white;
+  background: none;
+  padding: 0 10px;
+  border: none;
+  font-family: Quicksand;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  color: #69207B;
+  background-color: white;
+  border-radius: 15px;
 }
