@@ -1,0 +1,33 @@
+.about {
+  position: relative;
+  background-color: white;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-content {
+  background-color: black;
+  padding: 50px;
+  border-radius: 15px;
+  max-width: 85%;
+  max-height: 85%;
+  color:white;
+}
+
+.about-content h2 {
+  font-family: Roboto serif;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.7em;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  font-family: Roboto Condensed;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.2em;
+  line-height: 150%;
+}
