@@ -1,43 +1,37 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
-  def index
-    @profiles = Profile.all
-  end
+  before_action :authenticate_user!
+  before_action :set_profile, only: [:show, :edit, :update]
 
   def new
     @profile = Profile.new
   end
 
   def create
-    @profile = Profile.new(profile_params)
-    @profile.user = current_user
+    @profile = current_user.profiles.build(profile_params)
     if @profile.save
-      redirect_to @profile, notice: 'Profile was successfully created.'
+      #ToDo
+      #redirect_to "missing the create path", notice: 'Profile created successfully.'
     else
       render :new
     end
   end
 
-  def edit
-  end
-
-  def update
-    if @profile.update(profile_params)
-      redirect_to @profile, notice: 'Profile was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
+  #ToDo
   def show
   end
 
-  def destroy
-    @profile.destroy
-    redirect_to profiles_url, notice: 'Profile was successfully destroyed.'
-  end
+  #ToDo
+  # def edit
+  # end
+
+  # def update
+  #   if @profile.update(profile_params)
+  #     redirect_to "missing the update path", notice: 'Profile was successfully updated.'
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   private
 
