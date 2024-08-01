@@ -15,46 +15,34 @@ class ObjectivesController < ApplicationController
     end
   end
 
-  private
+  # def index
+  #   @objectives = objective.all
+  # end
 
-  def objective_params
-    params.require(:objective).permit(:title, :description)
-  end
-  def index
-    @objectives = objective.all
-  end
+  # def show
+  # end
 
-  def show
-  end
+  # def new
+  #   @objective = objective.new
+  # end
 
-  def new
-    @objective = objective.new
-  end
 
-  def create
-    @objective = objective.new(objective_params)
-    if @objective.save
-      redirect_to @objective, notice: 'objective was successfully created.'
-    else
-      render :new
-    end
-  end
 
-  def edit
-  end
+  # def edit
+  # end
 
-  def update
-    if @objective.update(objective_params)
-      redirect_to @objective, notice: 'objective was successfully updated.'
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @objective.update(objective_params)
+  #     redirect_to @objective, notice: 'objective was successfully updated.'
+  #   else
+  #     render :edit
+  #   end
+  # end
 
-  def destroy
-    @objective.destroy
-    redirect_to objectives_url, notice: 'objective was successfully destroyed.'
-  end
+  # def destroy
+  #   @objective.destroy
+  #   redirect_to objectives_url, notice: 'objective was successfully destroyed.'
+  # end
 
   private
 
