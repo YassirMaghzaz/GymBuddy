@@ -33,6 +33,12 @@ class ProfilesController < ApplicationController
   #   end
   # end
 
+  protected
+
+  def after_sign_up_path_for(resource)
+    new_objective_path
+  end
+
   private
 
   def set_profile
