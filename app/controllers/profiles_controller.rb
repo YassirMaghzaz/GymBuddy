@@ -10,8 +10,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = current_user.profiles.build(profile_params)
     if @profile.save
-      #ToDo
-      #redirect_to "missing the create path", notice: 'Profile created successfully.'
+      redirect_to new_objective_path, notice: 'Profile created successfully.'
     else
       render :new
     end
@@ -32,13 +31,6 @@ class ProfilesController < ApplicationController
   #     render :edit
   #   end
   # end
-
-  protected
-
-  def after_new_profile_path_for(resource)
-    new_objective_path
-  end
-
   private
 
   def set_profile
