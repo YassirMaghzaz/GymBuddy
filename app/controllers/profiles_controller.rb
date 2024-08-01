@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
 
   protected
 
-  def after_sign_up_path_for(resource)
+  def after_new_profile_path_for(resource)
     new_objective_path
   end
 
