@@ -1,6 +1,25 @@
 class ObjectivesController < ApplicationController
-  before_action :set_objective, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  #before_action :set_objective, only: [:show, :edit, :update, :destroy]
 
+  def new
+    @objective = current_user.objectives.build
+  end
+
+  def create
+    @objective = current_user.objectives.build(objective_params)
+    if @objective.save
+      redirect_to new_preference_path, notice: 'Objective created successfully.'
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def objective_params
+    params.require(:objective).permit(:title, :description)
+  end
   def index
     @objectives = objective.all
   end
