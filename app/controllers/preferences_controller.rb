@@ -3,7 +3,7 @@ class PreferencesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @preference = current_user.build_preference
+    @preference = Preference.new
   end
 
   def create
