@@ -9,4 +9,16 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # resources :profiles do
+  #   resources :objectives
+  #   resources :preferences
+  #   resources :matches
+  # end
+  resources :profiles, only: [:new, :create]
+  resources :objectives, only: [:new, :create]
+  resources :preferences, only: [:new, :create]
+
+  resources :gyms do
+    resources :preferences
+  end
 end
