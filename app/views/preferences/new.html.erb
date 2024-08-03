@@ -1,3 +1,4 @@
+<div class="background">
 <div class="container">
   <div class="row justify-content-center">
     <div class="card custom-card">
@@ -12,14 +13,12 @@
             <%= f.input :workout_type, label: 'Workout Type', as: :select, collection: ['Cardio', 'Strength', 'Mixed'], required: true, input_html: { class: "custom-form-control form-control" } %>
           </div>
           <div class="custom-card-action">
-            <% unless params[:step] == '1' %>
-              <%= f.button :button, 'Go Back', type: 'button', onclick: 'history.back()', class: "btn custom-btn-secondary" %>
-            <% end %>
-            <%= f.button :submit, params[:step] == '2' ? 'Send' : 'Next', class: "btn custom-btn-primary" %>
+
+            <%= f.button :submit,"Next", class: "btn custom-btn-primary" %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
+</div>
