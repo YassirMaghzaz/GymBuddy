@@ -65,9 +65,9 @@ class ObjectifsController < ApplicationController
   end
 
   def create
-    @objectif = @profile.objectifs.build(objectif_params)
+    @objectif = @profile.objectifs.new(objectif_params)
     if @objectif.save
-      redirect_to new_preference_path, notice: 'objectif created successfully.'
+      redirect_to new_preference_path, notice: 'Objectif created successfully. Now, please create a new preference.'
     else
       render :new
     end
