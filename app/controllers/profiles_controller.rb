@@ -1,14 +1,14 @@
 class ProfilesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_profile, only: [:show, :edit, :update]
+  #before_action :set_profile, only: [:show, :edit, :update]
 
   def new
     @profile = Profile.new
   end
 
   def create
-    @profile = current_user.profiles.build(profile_params)
+    @profile = current_user.build_profile(profile_params) 
     if @profile.save
       redirect_to new_objective_path, notice: 'Profile created successfully.'
     else
