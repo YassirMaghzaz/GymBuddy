@@ -1,0 +1,32 @@
+<div class="background">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card custom-card">
+        <div class="custom-card-header">
+          <h2 class="text-center">Objective</h2>
+        </div>
+        <div class="custom-card-body">
+          <%= simple_form_for @objectif do |f| %>
+            <div class="form-inputs custom-form-inputs">
+              <%= f.input :title %>
+              <%= f.input :status %>
+              <%= f.input :start_at, as: :datetime %>
+              <%= f.input :end_at, as: :datetime %>
+              <%= f.input :target_weight %>
+              <%= f.input :current_weight %>
+               <%= f.input :progress %>
+               <%= f.input :description %>
+            </div>
+            <div class="custom-card-action">
+              <% unless params[:step] == '1' %>
+                <%= f.button :button, 'Go Back', type: 'button', onclick: 'history.back()', class: "btn custom-btn-secondary" %>
+              <% end %>
+              <%= f.button :submit, params[:step] == '2' ? 'Send' : 'Next', class: "btn custom-btn-primary" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/footer' %>
