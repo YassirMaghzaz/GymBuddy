@@ -112,3 +112,4 @@ end
 #     params.require(:objectif).permit(:title, :description, :status, :progress, :start_at, :end_at, :target_weight, :current_weight, :profile_id)
 #   end
 # end
+
