@@ -8,9 +8,9 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = current_user.build_profile(profile_params) 
+    @profile = current_user.build_profile(profile_params)
     if @profile.save
-      redirect_to new_objective_path, notice: 'Profile created successfully.'
+      redirect_to new_objectif_path, notice: 'Profile created successfully.'
     else
       render :new
     end
