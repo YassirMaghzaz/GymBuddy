@@ -6,6 +6,7 @@ class Profile < ApplicationRecord
 
   has_many :objectives
   has_many :preferences
+  has_one :gym
   has_one :profile_image, dependent: :destroy
 
   has_many :initiated_matches, class_name: 'Match', foreign_key: 'profile_id'
