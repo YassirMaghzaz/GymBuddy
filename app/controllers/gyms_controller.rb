@@ -1,50 +1,25 @@
 class GymsController < ApplicationController
-  before_action :set_gym, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-
-  def index
-    @gyms = Gym.all
-  end
-
-  def show
-  end
-
+  before_action :authenticate_user
+  before_action :set_profile
   def new
-    @gym = Gym.new
+    @gym = @profile.gym.new(gyms_param)
   end
-
   def create
-    @gym = Gym.new(gym_params)
+    @gym = @profile.gym.new(gyms_param)
     if @gym.save
-      redirect_to @gym, notice: 'Gym was successfully created.'
+      redirect_to notice_path, notice: 'objectives created successfully.'
     else
       render :new
     end
   end
 
-  def edit
-  end
-
-  def update
-    if @gym.update(gym_params)
-      redirect_to @gym, notice: 'Gym was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @gym.destroy
-    redirect_to gyms_url, notice: 'Gym was successfully destroyed.'
-  end
-
   private
 
-  def set_gym
-    @gym = Gym.find(params[:id])
+  def set_profile
+    @profile = current_user.profile
   end
 
-  def gym_params
-    params.require(:gym).permit(:name, :address, :city, :country)
+  def gyms_param
+    params.require(:gym).permit(:name, :city)
   end
 end
