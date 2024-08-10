@@ -1,0 +1,75 @@
+<% resource = Profile.new %>
+<% resource_name = :profile %>
+
+<div class="background">
+  <div class="container custom-card">
+    <div class="custom-card-header">
+      <h2 class="text-center">Profile</h2>
+    </div>
+    <div class="custom-card-body">
+      <%= simple_form_for(resource, as: resource_name, url: profiles_path, method: :post) do |f| %>
+        <div class="form-group picture">
+          <label for="profile_photo" class="custom-file-upload">
+            <i class="fa fa-camera"></i> Upload
+            <%= f.input :photo, as: :file, class: "file-input" %>
+          </label>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= f.input :first_name,
+                        required: true,
+                        autofocus: true,
+                        class: "custom-form-control form-control" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.input :last_name,
+                        required: true,
+                        class: "custom-form-control form-control" %>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= f.input :age,
+                        required: true,
+                        class: "custom-form-control form-control",
+                        input_html: { type: 'number' } %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.input :gender,
+                        required: true,
+                        collection: ['Male', 'Female'],
+                        class: "custom-form-control form-control" %>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= f.input :location,
+                        input_html: { type: 'text' },
+                        required: true,
+                        class: "custom-form-control form-control"%>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.input :level,
+                        required: true,
+                        collection: ['Beginner', 'Intermediate', 'Advanced'],
+                        class: "custom-form-control form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.input :bio,
+                      as: :text,
+                      required: false,
+                      class: "custom-form-control form-control" %>
+        </div>
+
+        <div class="form-group submit">
+          <%= f.button :submit, "Next", class: "btn custom-btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer"%>
