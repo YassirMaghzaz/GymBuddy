@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_01_191340) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_03_134112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_191340) do
     t.index ["profile_id"], name: "index_matches_on_profile_id"
   end
 
-  create_table "objectives", force: :cascade do |t|
+  create_table "objectifs", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "status"
@@ -74,7 +74,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_191340) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "profile_id", null: false
-    t.index ["profile_id"], name: "index_objectives_on_profile_id"
+    t.index ["profile_id"], name: "index_objectifs_on_profile_id"
   end
 
   create_table "preferences", force: :cascade do |t|
@@ -93,7 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_191340) do
     t.string "last_name"
     t.integer "age"
     t.string "gender"
-    t.text "location"
+    t.string "location"
     t.text "bio"
     t.text "availability"
     t.string "level"
@@ -124,7 +124,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_191340) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "matches", "profiles"
   add_foreign_key "matches", "profiles", column: "matched_profile_id"
-  add_foreign_key "objectives", "profiles"
+  add_foreign_key "objectifs", "profiles"
   add_foreign_key "preferences", "gyms"
   add_foreign_key "preferences", "profiles"
   add_foreign_key "profiles", "users"
