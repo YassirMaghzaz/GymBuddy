@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :profiles do
     resources :objectives, only: [:new, :create]
     resources :preferences, only: [:new, :create]
-    resources :gym, only: [:new, :create]
+    resources :gyms, only: [:new, :create]
     resources :matches, only: [:index, :new, :create]
   end
   resources :matches, only: [:show, :edit, :update, :delete]
