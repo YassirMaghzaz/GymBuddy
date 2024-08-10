@@ -3,19 +3,20 @@
     <div class="row justify-content-center">
       <div class="card custom-card">
         <div class="custom-card-header">
-          <h2 class="text-center">Objective</h2>
+          <h2 class="text-center">Objectives</h2>
         </div>
         <div class="custom-card-body">
-          <%= simple_form_for @objectif do |f| %>
+          <%= simple_form_for [@profile, @objective] do |f| %>
             <div class="form-inputs custom-form-inputs">
               <%= f.input :title %>
               <%= f.input :status %>
-              <%= f.input :start_at, as: :date %>
-              <%= f.input :end_at, as: :date %>
+              <%= f.input :description %>
+              <%= f.input :progress %>
+              <%= f.input :start_at, as: :datetime %>
+              <%= f.input :end_at, as: :datetime %>
               <%= f.input :target_weight %>
               <%= f.input :current_weight %>
-               <%= f.input :progress %>
-               <%= f.input :description %>
+              <%= f.input :profile_id, as: :hidden, input_html: { value: current_user.profile.id } %>
             </div>
             <div class="custom-card-action">
               <% unless params[:step] == '1' %>

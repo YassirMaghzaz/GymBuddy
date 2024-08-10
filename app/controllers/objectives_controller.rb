@@ -1,12 +1,13 @@
 class ObjectivesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_profile
 
   def new
-    @objective = current_user.profile.objectives.build
+    @objective = @profile.objectives.new
   end
 
   def create
-    @objective = current_user.profile.objectives.build(objective_params)
+    @objective = @profile.objective.new(objective_params)
     if @objective.save
       redirect_to notice_path, notice: 'objectives created successfully.'
     else
@@ -15,6 +16,10 @@ class ObjectivesController < ApplicationController
   end
 
   private
+
+  def set_profile
+    @profile = current_user.profile
+  end
 
   def objective_params
     params.require(:objective).permit(:title, :description, :status, :progress, :start_at, :end_at, :target_weight, :current_weight)
