@@ -1,13 +1,14 @@
 class GymsController < ApplicationController
-  before_action :authenticate_user
-  before_action :set_profile
+  before_action :set_profile, only: [:new, :create]
+
   def new
-    @gym = @profile.gym.new(gyms_param)
+    @gym = @profile.build_gym
   end
+
   def create
-    @gym = @profile.gym.new(gyms_param)
+    @gym = @profile.build_gym(gym_params)
     if @gym.save
-      redirect_to notice_path, notice: 'objectives created successfully.'
+      redirect_to notice_path, notice: 'Gym created successfully.'
     else
       render :new
     end
@@ -19,7 +20,7 @@ class GymsController < ApplicationController
     @profile = current_user.profile
   end
 
-  def gyms_param
+  def gym_params
     params.require(:gym).permit(:name, :city)
   end
 end
