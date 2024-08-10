@@ -9,7 +9,7 @@ class PreferencesController < ApplicationController
   def create
     @preference = @profile.preferences.new(preference_params)
     if @preference.save
-      redirect_to new_profile_gym_path, notice: 'Preferences created successfully.'
+      redirect_to new_profile_gym_path(@profile), notice: 'Preferences created successfully.'
     else
       render :new
     end
@@ -21,6 +21,6 @@ class PreferencesController < ApplicationController
     @profile = current_user.profile
   end
   def preference_params
-    params.require(:preference).permit(:workout_time, :workout_days, :workout_type, :intensity_level, :equipment, :gym_id,)
+    params.require(:preference).permit(:workout_days, :workout_type)
   end
 end

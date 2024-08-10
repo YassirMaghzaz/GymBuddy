@@ -3,13 +3,13 @@ class ObjectivesController < ApplicationController
   before_action :set_profile
 
   def new
-    @objective = @profile.objectives.new
+    @objective = @profile.objectives.build
   end
 
   def create
-    @objective = @profile.objective.new(objective_params)
+    @objective = @profile.objectives.build(objective_params)
     if @objective.save
-      redirect_to notice_path, notice: 'objectives created successfully.'
+      redirect_to new_profile_preference_path(@profile) , notice: 'objectives created successfully.'
     else
       render :new
     end
