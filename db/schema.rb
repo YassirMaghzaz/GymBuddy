@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_03_134112) do
+
+ActiveRecord::Schema[7.1].define(version: 2024_08_10_101522) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,9 +85,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_134112) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "profile_id", null: false
-    t.integer "gym_id", null: false
-    t.index ["gym_id"], name: "index_preferences_on_gym_id"
     t.index ["profile_id"], name: "index_preferences_on_profile_id"
+  end
+
+  create_table "profile_images", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_profile_images_on_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -100,6 +108,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_134112) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.bigint "gym_id"
+    t.index ["gym_id"], name: "index_profiles_on_gym_id"
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
@@ -127,5 +137,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_134112) do
   add_foreign_key "objectifs", "profiles"
   add_foreign_key "preferences", "gyms"
   add_foreign_key "preferences", "profiles"
+  add_foreign_key "profile_images", "profiles"
+  add_foreign_key "profiles", "gyms"
   add_foreign_key "profiles", "users"
 end
