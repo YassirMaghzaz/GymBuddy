@@ -16,8 +16,16 @@ Rails.application.routes.draw do
     resources :objectives, only: [:new, :create]
     resources :preferences, only: [:new, :create]
     resources :gyms, only: [:new, :create]
-    resources :matches, only: [:index, :new, :create]
-  end
-  resources :matches, only: [:show, :edit, :update, :delete]
+    resources :matches, only: [:index, :create, :destroy] do
+      collection do
+        get :pending
+        get :accepted
+      end
 
+      member do
+        patch :accept
+        patch :reject
+      end
+    end
+  end
 end
