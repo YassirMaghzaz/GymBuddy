@@ -31,7 +31,8 @@ ProfileImage.destroy_all
 10.times do |i|
   user = User.create!(
     email: Faker::Internet.email,
-    encrypted_password: Devise::Encryptor.digest(User, 'password123')
+    password: 'password123', 
+    password_confirmation: 'password123'
   )
 
   profile = Profile.create!(
