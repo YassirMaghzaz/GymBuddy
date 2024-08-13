@@ -3,7 +3,6 @@ class PreferencesController < ApplicationController
 
   def new
     @preference = Preference.new
-    @preference = current_user.profile.preferences.build
   end
 
   def create
