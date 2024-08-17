@@ -18,7 +18,6 @@ class MatchesController < ApplicationController
 
   def pending
     @pending_matches = Match.where(matched_profile_id: current_user.profile.id, status: "pending")
-
     @profiles = Profile.where(id: @pending_matches.pluck(:profile_id))
   end
 
@@ -39,7 +38,8 @@ class MatchesController < ApplicationController
   end
 
   def accepted
-    @accepted_matches = Match.where(profile_id: current_user.profile.id, status: "accepted")
+    @accepted_matches = Match.where(matched_profile_id: current_user.profile.id, status: "accepted")
+    @profiles = Profile.where(id: @accepted_matches.pluck(:profile_id))
   end
 
   private
