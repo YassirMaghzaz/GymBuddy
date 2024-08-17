@@ -5,5 +5,5 @@
 <p><%= @profile.last_name %></p>
 <p><%= @profile.age %></p>
 
-<%= button_to "Skip", profile_matches_path, method: :get, class: "btn btn-secondary" %>
-<%= button_to "Match", profile_matches_path(profile_id: @profile.id), method: :post, class: "btn btn-primary" %>
+<%= button_to "Skip", profile_matches_path(@profile), method: :get, class: "btn btn-secondary" %>
+<%= button_to "Match", profile_matches_path(@profile), method: :post, class: "btn btn-primary" %>

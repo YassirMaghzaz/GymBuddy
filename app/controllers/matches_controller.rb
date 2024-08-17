@@ -16,9 +16,9 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(profile_id: current_user.profile.id, matched_profile_id: params[:profile_id], status: "pending")
     if @match.save
-      redirect_to profile_matches_path, notice: "Match request sent!"
+      redirect_to profile_matches_path(current_user.profile), notice: "Match request sent!"
     else
-      redirect_to profile_matches_path, alert: "Something went wrong."
+      redirect_to profile_matches_path(current_user.profile), alert: "Something went wrong."
     end
   end
 
