@@ -1,24 +1,18 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:accept, :reject, :destroy]
+  before_action :random_profile, only: :index
 
   def index
-    matched_profiles_ids = Match.where(profile_id: current_user.profile.id)
-                                .or(Match.where(matched_profile_id: current_user.profile.id))
-                                .pluck(:matched_profile_id, :profile_id).flatten.uniq
-
-    @profile = Profile.where.not(id: matched_profiles_ids + [current_user.profile.id])
-                      .order("RANDOM()")
-                      .first
-
   end
 
 
   def create
-    @match = Match.new(profile_id: current_user.profile.id, matched_profile_id: params[:profile_id], status: "pending")
+    accepted = params[:accepted] == "true"
+    @match = Match.new(profile_id: current_user.profile.id, matched_profile_id: params[:profile_id], status: accepted ? "pending" : "rejected")
     if @match.save
-      redirect_to profile_matches_path(current_user.profile), notice: "Match request sent!"
+      redirect_to matches_path, notice: "Match request sent!"
     else
-      redirect_to profile_matches_path(current_user.profile), alert: "Something went wrong."
+      redirect_to matches_path, alert: "Something went wrong."
     end
   end
 
@@ -52,5 +46,14 @@ class MatchesController < ApplicationController
 
   def set_match
     @match = Match.find(params[:id])
+  end
+
+  def random_profile
+    matched_profiles_ids = Match.where(profile_id: current_user.profile.id)
+    .or(Match.where(matched_profile_id: current_user.profile.id))
+    .pluck(:matched_profile_id, :profile_id).flatten.uniq
+
+    @profile = Profile.where.not(id: [matched_profiles_ids + [current_user.profile.id]])
+    .sample
   end
 end

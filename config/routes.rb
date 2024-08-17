@@ -12,11 +12,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :matches, only: [ :index]
   resources :profiles do
     resources :objectives, only: [:new, :create]
     resources :preferences, only: [:new, :create]
     resources :gyms, only: [:new, :create]
-    resources :matches, only: [:index, :create, :destroy] do
+    resources :matches, only: [ :create, :destroy] do
       collection do
         get :pending
         get :accepted

@@ -1,9 +1,10 @@
 <h1>Find Your GymBuddy</h1>
 
+<%=  current_user.profile.initiated_matches.to_json%>
 
 <p><%= @profile.first_name %></p>
 <p><%= @profile.last_name %></p>
 <p><%= @profile.age %></p>
 
-<%= button_to "Skip", profile_matches_path(@profile), method: :get, class: "btn btn-secondary" %>
-<%= button_to "Match", profile_matches_path(@profile), method: :post, class: "btn btn-primary" %>
+<%= button_to "Skip", profile_matches_path(@profile, accepted: false), method: :post, class: "btn btn-secondary" %>
+<%= button_to "Match", profile_matches_path(@profile, accepted: true), method: :post, class: "btn btn-primary" %>
