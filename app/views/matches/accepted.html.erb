@@ -1,1 +1,9 @@
-
+<h1>Accepted Matches</h1>
+<% @accepted_matches.each do |match| %>
+  <% profile = @profiles.find { |p| p.id == match.profile_id } %>
+  <div>
+    <br><br><br>
+    <p><%= profile.first_name %> <%= profile.last_name %></p>
+    <%= button_to "Remove", profile_match_path(profile, match), method: :delete, class: "btn btn-danger" %>
+  </div>
+<% end %>
