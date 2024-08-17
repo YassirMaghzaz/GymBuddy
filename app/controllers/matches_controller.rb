@@ -10,7 +10,7 @@ class MatchesController < ApplicationController
     accepted = params[:accepted] == "true"
     @match = Match.new(profile_id: current_user.profile.id, matched_profile_id: params[:profile_id], status: accepted ? "pending" : "rejected")
     if @match.save && accepted == true
-      redirect_to matches_path, notice: "Match request sent!"
+      redirect_to request_path
     elsif accepted == false
       redirect_to matches_path
     else
