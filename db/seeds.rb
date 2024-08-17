@@ -31,7 +31,7 @@ ProfileImage.destroy_all
 10.times do |i|
   user = User.create!(
     email: Faker::Internet.email,
-    password: 'password123', 
+    password: 'password123',
     password_confirmation: 'password123'
   )
 
