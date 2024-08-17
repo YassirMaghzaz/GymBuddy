@@ -12,16 +12,27 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  # resources :profiles do
-  #   resources :objectifs
-  #   resources :preferences
-  #   resources :matches
-  # end
-  resources :profiles, only: [:new, :create]
-  resources :objectifs, only: [:new, :create]
-  resources :preferences, only: [:new, :create]
 
-  resources :gyms do
-    resources :preferences
+  # Routes pour la création, affichage, édition et mise à jour des profils
+  resources :profiles, only: [:new, :create, :show, :edit, :update] do
+    resources :objectifs, only: [:new, :create, :edit, :update, :destroy]
+    resources :preferences, only: [:new, :create, :edit, :update, :destroy]
+  end
+
+  # Routes pour les gyms
+  resources :gyms
+
+  # Routes pour les utilisateurs avec actions de like et dislike
+  # resources :users, only: [:index] do
+  #   member do
+  #     post 'like', to: 'matches#create', defaults: { status: 'accepted' }
+  #     post 'dislike', to: 'matches#create', defaults: { status: 'rejected' }
+  #   end
+  # end
+  resources :users, only: [:index] do
+    member do
+      post 'like'
+      post 'dislike'
+    end
   end
 end

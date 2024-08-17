@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
-
   before_action :authenticate_user!
-  #before_action :set_profile, only: [:show, :edit, :update]
+  before_action :set_profile, only: [:show, :edit, :update]
 
   def new
     @profile = Profile.new
@@ -16,25 +15,22 @@ class ProfilesController < ApplicationController
     end
   end
 
-  #ToDo
-  def show
+  def show; end
+
+  def edit; end
+
+  def update
+    if @profile.update(profile_params)
+      redirect_to profile_path(@profile), notice: 'Profile was successfully updated.'
+    else
+      render :edit
+    end
   end
 
-  #ToDo
-  # def edit
-  # end
-
-  # def update
-  #   if @profile.update(profile_params)
-  #     redirect_to "missing the update path", notice: 'Profile was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
   private
 
   def set_profile
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile
   end
 
   def profile_params
