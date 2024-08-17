@@ -6,4 +6,7 @@ class PagesController < ApplicationController
 
   def notice
   end
+
+  def inv
+  end
 end
