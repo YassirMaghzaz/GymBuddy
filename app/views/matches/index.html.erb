@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <body>
   <h1><strong>Find Your Match</strong></h1>
@@ -23,3 +24,18 @@
   <%end%>
   <%= render partial: 'shared/footer' %>
 </body>
+=======
+<h1>Buddies</h1>
+<div class="buddy-list">
+ <% @matches.each do |match| %>
+ <div class="buddy-item">
+   <%= image_tag match.profile_image_url, alt: match.full_name %>
+   <span class="buddy-name"><%= match.full_name %></span>
+   <%= button_to 'View Profile', buddy_path(match), method: :get %>
+   <%= button_to 'Chat', chat_with_buddy_path(match), method: :get %>
+   <%= button_to 'Unmatch', unmatch_buddy_path(match), method: :delete %>
+ </div>
+ <% end %>
+
+</div>
+>>>>>>> PreferencesViews
