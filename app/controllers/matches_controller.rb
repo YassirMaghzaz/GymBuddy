@@ -39,7 +39,7 @@ class MatchesController < ApplicationController
     redirect_to accepted_profile_matches_path, notice: "Match removed."
   end
 
-  def accepted
+  def buddies
     @accepted_matches = Match.where(matched_profile_id: current_user.profile.id, status: "accepted")
     @profiles = Profile.where(id: @accepted_matches.pluck(:profile_id))
   end

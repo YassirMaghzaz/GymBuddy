@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-<<<<<<< HEAD
   resources :matches, only: [ :index]
   resources :profiles do
     resources :objectives, only: [:new, :create]
@@ -21,19 +20,8 @@ Rails.application.routes.draw do
     resources :matches, only: [ :create, :destroy] do
       collection do
         get :pending
-        get :accepted
+        get :buddies
       end
-=======
-  # resources :profiles do
-  #   resources :objectifs
-  #   resources :preferences
-  #   resources :matches
-  # end
-  resources :profiles, only: [:new, :create]
-  resources :objectifs, only: [:new, :create]
-  resources :preferences, only: [:new, :create]
-  resources :matches, only: [:index]
->>>>>>> PreferencesViews
 
       member do
         patch :accept
