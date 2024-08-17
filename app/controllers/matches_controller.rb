@@ -9,8 +9,10 @@ class MatchesController < ApplicationController
   def create
     accepted = params[:accepted] == "true"
     @match = Match.new(profile_id: current_user.profile.id, matched_profile_id: params[:profile_id], status: accepted ? "pending" : "rejected")
-    if @match.save
+    if @match.save && accepted == true
       redirect_to matches_path, notice: "Match request sent!"
+    elsif accepted == false
+      redirect_to matches_path
     else
       redirect_to matches_path, alert: "Something went wrong."
     end
