@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   }
   root to: "pages#home"
   get "notice", to: "pages#notice"
+  get "request", to: "pages#inv"
+  get "congrats", to: "pages#cong"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
-  get "request", to: "pages#inv"
+
   # Defines the root path route ("/")
   # root "posts#index"
   resources :matches, only: [ :index]
@@ -19,8 +21,9 @@ Rails.application.routes.draw do
     resources :gyms, only: [:new, :create]
     resources :matches, only: [ :create, :destroy] do
       collection do
-        get :pending
+        get :requests
         get :buddies
+        get :details
       end
 
       member do
