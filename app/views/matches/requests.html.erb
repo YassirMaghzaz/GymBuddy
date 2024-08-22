@@ -1,0 +1,13 @@
+
+<h1>Request</h1>
+<div class="buddy-list">
+ <% @pending_matches.each do |match| %>
+  <% profile = @profiles.find { |p| p.id == match.profile_id } %>
+ <div class="buddy-item">
+   <%#= image_tag profile.profile_image_url, alt: match.full_name %>
+   <span class="buddy-name"><%=profile.first_name %></span>
+   <span class="buddy-name"><%=profile.last_name %></span>
+   <%= link_to "Details", details_profile_matches_path(profile, match_id: match.id), method: :get, class: "btn btn-success" %>
+ </div>
+ <% end %>
+</div>
