@@ -18,25 +18,28 @@ class MatchesController < ApplicationController
     end
   end
 
-  def pending
+  def requests
     @pending_matches = Match.where(matched_profile_id: current_user.profile.id, status: "pending")
     @profiles = Profile.where(id: @pending_matches.pluck(:profile_id))
   end
 
-
+  def details
+    @profile = Profile.find(params[:profile_id])
+    @match = Match.find(params[:match_id])
+  end
   def accept
     @match.update(status: "accepted")
-    redirect_to pending_profile_matches_path, notice: "You have accepted the match!"
+    redirect_to congrats_path
   end
 
   def reject
     @match.update(status: "rejected")
-    redirect_to pending_profile_matches_path, notice: "You have rejected the match."
+    redirect_to requests_profile_matches_path
   end
 
   def destroy
     @match.update(status: "rejected")
-    redirect_to accepted_profile_matches_path, notice: "Match removed."
+    redirect_to accept_profile_matches_path, notice: "Match removed."
   end
 
   def buddies
