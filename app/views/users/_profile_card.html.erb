@@ -1,0 +1,63 @@
+<div class="profile-card">
+  <div class="vertical-box">
+    <% if user.profile.photo.attached? %>
+      <%= image_tag user.profile.photo, class: 'profile-photo' %>
+    <% else %>
+       <%= image_tag 'default_profile_picture.jpg', class: 'profile-photo', alt: 'Default Profile Picture' %>
+
+    <% end %>
+
+    <div class="profile-info">
+      <h2><%= user.profile.first_name %> <%= user.profile.last_name %></h2>
+      <div class="profile-info-container">
+        <div class="info-column"><p><%= user.profile.age %></p></div>
+        <div class="info-column"><p><%= user.profile.gender %></p></div>
+        <div class="info-column"><p><%= user.profile.level %></p></div>
+      </div>
+      <p><%= user.profile.bio %></p>
+    </div>
+  </div>
+  <div class="right-box-container">
+    <div class="top-right-box">
+      <h3>Objective</h3>
+      <% user.profile.objectifs.each do |objectif| %>
+        <div class="objective-row">
+          <p><strong>Title:</strong> <%= objectif.title %></p>
+          <p><strong>Status:</strong> <%= objectif.status %></p>
+        </div>
+        <div class="objective-row">
+          <p class="objective-description"><strong>Description:</strong> <%= objectif.description %></p>
+        </div>
+        <div class="objective-row">
+          <p><strong>Progress:</strong></p>
+          <div class="progress-bar">
+            <div class="progress" style="width: <%= objectif.date_based_progress %>%;"></div>
+          </div>
+        </div>
+        <div class="objective-row">
+          <p><strong>Start At:</strong> <%= objectif.start_at %></p>
+          <p><strong>End At:</strong> <%= objectif.end_at %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="bottom-right-box">
+      <h3>Preferences</h3>
+      <div class="preferences-container">
+        <% user.profile.preferences.each do |preference| %>
+          <div class="preference-column">
+            <p><strong>Gym:</strong></p>
+            <p><%= preference.gym %></p>
+          </div>
+          <div class="preference-column">
+            <p><strong>Workout Days:</strong></p>
+            <p><%= preference.workout_days %></p>
+          </div>
+          <div class="preference-column">
+            <p><strong>Workout Type:</strong></p>
+            <p><%= preference.workout_type %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

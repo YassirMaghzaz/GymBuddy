@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   }
   root to: "pages#home"
   get "notice", to: "pages#notice"
+  get "request", to: "pages#inv"
+  get "congrats", to: "pages#cong"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -12,12 +14,22 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :matches, only: [ :index]
   resources :profiles do
     resources :objectives, only: [:new, :create]
     resources :preferences, only: [:new, :create]
     resources :gyms, only: [:new, :create]
-    resources :matches, only: [:index, :new, :create]
-  end
-  resources :matches, only: [:show, :edit, :update, :delete]
+    resources :matches, only: [ :create, :destroy] do
+      collection do
+        get :requests
+        get :buddies
+        get :details
+      end
 
+      member do
+        patch :accept
+        patch :reject
+      end
+    end
+  end
 end
