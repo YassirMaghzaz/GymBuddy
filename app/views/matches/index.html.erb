@@ -1,0 +1,25 @@
+
+<body>
+  <h1><strong>Find Your Match</strong></h1>
+  <% if @profile.blank?%>
+    <div>
+      <p>Still workin on the component</p>
+    </div>
+  <%else%>
+    <div id="profile-card-container" class="row-container">
+      <%= render partial: 'profile_card', locals: { profile: @profile } %>
+    </div>
+    <br>
+    <br><br><br>
+    <div class="action-buttons">
+      <div class="d-inline">
+        <%= button_to "❌", profile_matches_path(@profile, accepted: false), method: :post,  class: "btn pass-btn", id: 'dislike-btn' %>
+      </div>
+      <div class="d-inline">
+        <%= button_to "✔️", profile_matches_path(@profile, accepted: true), method: :post, class: "btn like-btn", id: 'like-btn' %>
+      </div>
+
+    </div>
+  <%end%>
+  <%= render partial: 'shared/footer' %>
+</body>

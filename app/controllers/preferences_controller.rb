@@ -1,54 +1,42 @@
 class PreferencesController < ApplicationController
-  #before_action :set_preference, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_profile
+  before_action :set_preference, only: [:edit, :update, :destroy]
 
   def new
-    @preference = Preference.new
+    @preference = @profile.preferences.new
   end
 
   def create
-    @preference = current_user.build_preference(preference_params)
+    @preference = @profile.preferences.new(preference_params)
     if @preference.save
-      redirect_to "some_final_path", notice: 'Preferences created successfully.'
+      redirect_to new_profile_gym_path(@profile), notice: 'Preferences created successfully.'
     else
       render :new
     end
   end
 
-  # def index
-  #   @preferences = Preference.all
-  # end
+  def edit; end
 
-  # def show
-  # end
+  def update
+    if @preference.update(preference_params)
+      redirect_to profile_path(@profile), notice: 'Preferences were successfully updated.'
+    else
+      render :edit
+    end
+  end
 
-  # def new
-  #   @preference = Preference.new
-  # end
-
-  # def edit
-  # end
-
-  # def update
-  #   if @preference.update(preference_params)
-  #     redirect_to @preference, notice: 'Preference was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
-
-  # def destroy
-  #   @preference.destroy
-  #   redirect_to preferences_url, notice: 'Preference was successfully destroyed.'
-  # end
+  def destroy
+    @preference.destroy
+    redirect_to profile_path(@profile), notice: 'Preferences were successfully deleted.'
+  end
 
   private
 
-  def set_preference
-    @preference = Preference.find(params[:id])
+  def set_profile
+    @profile = current_user.profile
   end
-
   def preference_params
-    params.require(:preference).permit(:workout_time, :workout_days, :workout_type, :intensity_level, :equipment, :gym_id)
+    params.require(:preference).permit(:workout_days, :workout_type)
   end
 end
