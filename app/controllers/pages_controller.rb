@@ -9,4 +9,7 @@ class PagesController < ApplicationController
 
   def inv
   end
+
+  def cong
+  end
 end
