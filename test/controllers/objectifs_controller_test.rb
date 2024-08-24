@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ObjectifTest < ActiveSupport::TestCase
+class ObjectifsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

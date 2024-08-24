@@ -1,0 +1,22 @@
+<div class="background">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card custom-card">
+        <div class="custom-card-header">
+          <h2 class="text-center">Preferences</h2>
+        </div>
+        <div class="custom-card-body">
+          <%= simple_form_for [@profile, @preference] do |f| %>
+            <div class="form-inputs custom-form-inputs">
+              <%= f.input :workout_days, label: 'Workout Days', required: true, input_html: { class: "custom-form-control form-control" } %>
+              <%= f.input :workout_type, label: 'Workout Type', as: :select, collection: ['Cardio', 'Strength', 'Mixed'], required: true, input_html: { class: "custom-form-control form-control" } %>
+            </div>
+            <div class="custom-card-action">
+              <%= f.button :submit, "Next", class: "btn custom-btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,3 @@
 class Gym < ApplicationRecord
-  has_many :preferences
+  belongs_to :profile
 end

@@ -1,0 +1,24 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1><strong>Find Your Match</strong></h1>
+
+  <div id="profile-card-container" class="row-container">
+    <%= render partial: 'profile_card', locals: { user: @user } %>
+  </div>
+
+  <div class="action-buttons">
+
+    <%= form_for @user, url: dislike_user_path(@user), remote: true, method: :post, html: { class: "d-inline" } do |f| %>
+      <%= f.submit "❌", class: "btn pass-btn", id: 'dislike-btn' %>
+    <% end %>
+    <%= form_for @user, url: like_user_path(@user), remote: true, method: :post, html: { class: "d-inline" } do |f| %>
+      <%= f.submit "✔️", class: "btn like-btn", id: 'like-btn' %>
+    <% end %>
+
+  </div>
+
+  <%= render partial: 'shared/footer' %>
+</body>

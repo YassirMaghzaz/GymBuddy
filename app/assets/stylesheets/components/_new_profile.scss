@@ -1,0 +1,134 @@
+.custom-card {
+  border-radius: 15px;
+  width: 80%;
+  max-width: 80vw;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-family: 'Roboto', serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.custom-card-header {
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 5px solid #54085a;
+}
+
+.custom-card-body {
+  padding: 10px;
+}
+.form-control, .form-select{
+  width: 90%;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+  flex: 1 1 calc(50% - 15px);
+}
+
+.custom-form-control input, .custom-form-control select, .custom-form-control textarea {
+
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border color for contrast */
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly different background to stand out */
+  color: white;
+}
+
+.custom-form-control input:focus, .custom-form-control select:focus, .custom-form-control textarea:focus {
+  border-color: #54085a; /* Maintain focus border color */
+  outline: none; /* Remove default outline */
+}
+
+.submit{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.custom-btn-primary {
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #54085a;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.custom-btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.custom-btn-secondary {
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #670b70;
+  transition: transform 0.3s ease;
+}
+
+.custom-btn-secondary:hover {
+  transform: scale(1.05);
+}
+
+.form-text {
+  color: white;
+}
+
+.file-input {
+  display: none;
+}
+
+.picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: #333;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.custom-file-upload:hover {
+  background-color: #e9ecef;
+  border-color: #b0bec5;
+}
+
+.custom-file-upload:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.custom-file-upload i {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.file-name-preview {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
