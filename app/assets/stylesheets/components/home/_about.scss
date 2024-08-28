@@ -8,26 +8,26 @@
 }
 
 .about-content {
-  background-color: #f4cb14;
+  background-color: black;
   padding: 50px;
-  border-radius: 15px;
+  border-radius: 25px;
   max-width: 85%;
   max-height: 85%;
-  color:white;
+  color: white;
 }
 
 .about-content h2 {
-  font-family: Roboto serif;
+  font-family: "Stylish", serif;
   text-align: center;
-  font-weight: 700;
-  font-size: 1.7em;
+  font-weight: 400;
+  font-size: 3em;
   margin-bottom: 20px;
 }
 
 .about-content p {
-  font-family: Roboto Condensed;
+  font-family: "Prata", serif;
   text-align: center;
-  font-weight: 300;
-  font-size: 1.2em;
-  line-height: 150%;
+  font-weight: 400;
+  font-size: 1.5em;
+  line-height: 300%;
 }
