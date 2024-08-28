@@ -88,14 +88,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_122719) do
     t.index ["profile_id"], name: "index_preferences_on_profile_id"
   end
 
-  create_table "profile_images", force: :cascade do |t|
-    t.bigint "profile_id", null: false
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_profile_images_on_profile_id"
-  end
-
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -135,6 +127,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_122719) do
   add_foreign_key "matches", "profiles", column: "matched_profile_id"
   add_foreign_key "objectives", "profiles"
   add_foreign_key "preferences", "profiles"
-  add_foreign_key "profile_images", "profiles"
   add_foreign_key "profiles", "users"
 end
