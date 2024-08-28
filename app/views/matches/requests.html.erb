@@ -1,13 +1,20 @@
-
-<h1>Request</h1>
-<div class="buddy-list">
- <% @pending_matches.each do |match| %>
-  <% profile = @profiles.find { |p| p.id == match.profile_id } %>
- <div class="buddy-item">
-   <%#= image_tag profile.profile_image_url, alt: match.full_name %>
-   <span class="buddy-name"><%=profile.first_name %></span>
-   <span class="buddy-name"><%=profile.last_name %></span>
-   <%= link_to "Details", details_profile_matches_path(profile, match_id: match.id), method: :get, class: "btn btn-success" %>
- </div>
- <% end %>
+<div>
+  <div class="heading">
+    <h1>Requests</h1>
+  </div>
+  <div class="requests-list">
+  <% @pending_matches.each do |match| %>
+    <% profile = @profiles.find { |p| p.id == match.profile_id } %>
+    <div class="request-item">
+      <%#= image_tag profile.profile_image_url, alt: match.full_name %>
+      <span class="request-infos"><%=profile.first_name %></span>
+      <span class="request-infos"><%=profile.last_name %></span>
+      <span class="request-infos"><%=profile.location %></span>
+      <span class="request-infos"><%=profile.level %></span>
+      <%= link_to details_profile_matches_path(profile, match_id: match.id), method: :get, class:"infos-btn" do %>
+        <i class="fa-solid fa-circle-info  fa-2x"></i>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
 </div>
