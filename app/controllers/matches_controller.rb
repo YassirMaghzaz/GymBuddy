@@ -1,10 +1,9 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:accept, :reject, :destroy]
   before_action :random_profile, only: :index
-
+  before_action :set_profile, if: :user_signed_in?
   def index
   end
-
 
   def create
     accepted = params[:accepted] == "true"
@@ -60,5 +59,11 @@ class MatchesController < ApplicationController
 
     @profile = Profile.where.not(id: [matched_profiles_ids + [current_user.profile.id]])
     .sample
+  end
+
+  private
+
+  def set_profile
+    @user_profile = current_user.profile
   end
 end
