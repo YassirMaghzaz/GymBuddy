@@ -2,34 +2,36 @@
   background-color: black;
   color: white;
   height: 7vh;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 25px 25px;
   position: relative;
   z-index: 5;
 }
 
 .logo {
   color: white;
-  font-family: Quicksand;
-  font-size: 1.2em;
+  font-family: "Alfa Slab One", serif;
+  font-size: 1.5em;
   font-weight:400;
-}
-
-.auth-btn {
-  color: white;
-  background: none;
+  margin-left: 15px;
   padding: 0 10px;
-  border: none;
-  font-family: Quicksand;
-  font-size: 1em;
-  cursor: pointer;
 }
 
-.auth-btn:hover {
-  color: #69207B;
-  background-color: white;
-  border-radius: 15px;
+.nav-btn {
+  color: white;
+  padding: 0 10px;
+  margin-right: 20px;
+  font-family: "Stylish", serif;
+  font-size: 1.3em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-btn:hover {
+  color:blueviolet;
+  transition: ease-in;
+  transform: scale(1.05);
 }
