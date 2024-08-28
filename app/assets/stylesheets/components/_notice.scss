@@ -1,12 +1,55 @@
-.centered-div {
+.notice-card{
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  height: 90vh;
+  border-radius: 15px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  text-align: center;
+
 }
-.btn-violet {
-  background-color: #670b70;
+
+.notice-card-content {
+  background-color: blueviolet;
+  padding: 20px;
+  border-radius: 25px;
+  min-width: 50vw;
+  min-height: 35vh;
+  max-width: 70vw;
+  max-height: 50vh;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.notice-card-content p {
+  align-self: flex-start;
+  width: 70%;
+  font-family: "Fredericka the Great", serif;
+  text-align: left;
+  font-weight: 400;
+  font-size: 3em;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.notice-card-button{
+  align-self: flex-end;
+  text-align: center;
+  width: 20vw;
+  background-color: white;
+  color: blueviolet;
+  border-radius: 20px;
+  padding: 10px 20px;
+  transition: transform 0.5s,;
+  font-family: "Stylish", serif;
+  font-weight: 400;
+  font-size: 1.5em;
+  text-decoration: none;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }

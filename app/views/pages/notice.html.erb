@@ -1,6 +1,6 @@
-<%= render "shared/navbar"%>
-<div class="container centered-div">
-  <p>Your account has been successfully created</p>
-  <button class="btn btn-violet">Look for a gym buddy</button>
+<div class="notice-card">
+  <div class="notice-card-content">
+    <p>Your account has been set up successfully! 🥳</p>
+    <%= link_to "Look For GymBuddy", matches_path, class: "notice-card-button" %>
+  </div>
 </div>
-<%= render "shared/footer"%>
