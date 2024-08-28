@@ -6,13 +6,13 @@
       <%= link_to "GymBuddy", root_path, class: "logo" %>
     <% end %>
   </div>
-  <div class="auth">
+  <div class="nav">
     <% if user_signed_in? %>
-      <%= link_to "Buddies", buddies_profile_matches_path(@user_profile), class: "auth-btn" if @user_profile.present? %>
-      <%= link_to "Requests", requests_profile_matches_path(@user_profile), class: "auth-btn" if @user_profile.present? %>
-      <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "auth-btn" %>
+      <%= link_to "Buddies", buddies_profile_matches_path(@user_profile), class: "nav-btn" if @user_profile.present? %>
+      <%= link_to "Requests", requests_profile_matches_path(@user_profile), class: "nav-btn" if @user_profile.present? %>
+      <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-btn" %>
     <% else %>
-      <%= link_to "Log In", new_user_session_path, class: "auth-btn" %>
+      <%= link_to "Log In", new_user_session_path, class: "nav-btn" %>
     <% end %>
   </div>
 </nav>
