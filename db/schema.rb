@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_10_122719) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_01_131327) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,8 +69,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_122719) do
     t.text "description"
     t.string "status"
     t.float "progress"
-    t.datetime "start_at", precision: nil
-    t.datetime "end_at", precision: nil
+    t.date "start_at"
+    t.date "end_at"
     t.float "target_weight"
     t.float "current_weight"
     t.datetime "created_at", null: false
