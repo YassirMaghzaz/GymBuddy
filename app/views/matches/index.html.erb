@@ -16,8 +16,8 @@
       <%= render partial: 'profile_card', locals: { profile: @profile } %>
     </div>
     <div class="action-buttons">
-      <%= button_to "Skip", profile_matches_path(@profile, accepted: false), method: :post,  class: "refuse-btn" %>
-      <%= button_to "Match", profile_matches_path(@profile, accepted: true), method: :post, class: "accept-btn" %>
+      <%= button_to "Skip", profile_matches_path(@profile, accepted: false), method: :post,  class: "skip-btn" %>
+      <%= button_to "Match", profile_matches_path(@profile, accepted: true), method: :post, class: "match-btn" %>
     </div>
   </div>
 
