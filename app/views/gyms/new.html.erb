@@ -1,21 +1,46 @@
-<div class="background">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="card custom-card">
-        <div class="custom-card-header">
-          <h2 class="text-center">Gym</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="new-gym-card">
+      <div class="new-gym-card-header">
+        <h2 class="text-center">Gym</h2>
+      </div>
+      <div class="new-gym-card-body">
+        <%= form_for([@profile, @gym]) do |f| %>
+        <div class="new-gym-form-inputs">
+
+          <div class="field">
+            <%= f.label :name, 'Name:', class: "name-label" %>
+            <%= f.text_field :name, required: true, class: "name-input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :city, 'City:', class: "city-label" %>
+            <%= f.text_field :city, required: true, class: "city-input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :country, 'Country:', class: "country-label" %>
+            <%= f.text_field :country, required: true, class: "country-input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :address, 'Address:', class: "address-label" %>
+            <%= f.text_field :address, required: true, class: "address-input" %>
+          </div>
+
         </div>
-        <div class="custom-card-body">
-          <%= simple_form_for [@profile, @gym] do |f| %>
-            <div class="form-inputs custom-form-inputs">
-              <%= f.input :name, label: 'Name', required: true, input_html: { class: "custom-form-control form-control" } %>
-              <%= f.input :city, label: 'City', required: true, input_html: { class: "custom-form-control form-control" } %>
-            </div>
-            <div class="custom-card-action">
-              <%= f.button :submit, "Next", class: "btn custom-btn-primary" %>
-            </div>
+
+        <div class="new-gym-card-action">
+            <% unless params[:step] == '1' %>
+            <!-- Go Back Button -->
+            <%= button_tag 'Go Back', type: 'button', onclick: 'history.back()', class: "custom-btn-secondary" %>
           <% end %>
+
+          <!-- Submit Button -->
+          <%= f.submit params[:step] == '2' ? 'Send' : 'Next', class: "custom-btn-primary" %>
         </div>
+      <% end %>
+
       </div>
     </div>
   </div>
