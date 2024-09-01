@@ -1,75 +1,77 @@
 <% resource = Profile.new %>
 <% resource_name = :profile %>
 
-<div class="background">
-  <div class="container custom-card">
-    <div class="custom-card-header">
-      <h2 class="text-center">Profile</h2>
-    </div>
-    <div class="custom-card-body">
-      <%= simple_form_for(resource, as: resource_name, url: profiles_path, method: :post) do |f| %>
-        <div class="form-group picture">
-          <label for="profile_photo" class="custom-file-upload">
-            <i class="fa fa-camera"></i> Upload
-            <%= f.input :photo, as: :file, class: "file-input" %>
-          </label>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <%= f.input :first_name,
-                        required: true,
-                        autofocus: true,
-                        class: "custom-form-control form-control" %>
+  <div class="container">
+    <div class="row justify-content-center">
+    <div class= "new-profile-card">
+      <div class="new-profile-card-header">
+        <h2>Profile</h2>
+      </div>
+      <div class="new-profile-card-body">
+      <%= form_for(resource, as: resource_name, url: profiles_path, method: :post, html: { multipart: true }) do |f| %>
+          <div class="field picture">
+            <label for="profile_photo" class="picture-upload">
+              <i class="fa fa-camera"></i> Upload
+              <!-- File input for photo -->
+              <%= f.file_field :photo, class: "picture-input", id: "profile_photo" %>
+            </label>
           </div>
-          <div class="form-group col-md-6">
-            <%= f.input :last_name,
-                        required: true,
-                        class: "custom-form-control form-control" %>
-          </div>
-        </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <%= f.input :age,
-                        required: true,
-                        class: "custom-form-control form-control",
-                        input_html: { type: 'number' } %>
-          </div>
-          <div class="form-group col-md-6">
-            <%= f.input :gender,
-                        required: true,
-                        collection: ['Male', 'Female'],
-                        class: "custom-form-control form-control" %>
-          </div>
-        </div>
+          <div class="form-row">
+            <!-- First Name Input -->
+            <div class="first-row-field">
+              <%= f.label :first_name, "First Name :", class: "first-name-label" %>
+              <%= f.text_field :first_name, required: true, autofocus: true, class: "first-name-input" %>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <%= f.input :location,
-                        input_html: { type: 'text' },
-                        required: true,
-                        class: "custom-form-control form-control"%>
+            <!-- Last Name Input -->
+            <div class="second-row-field">
+              <%= f.label :last_name, "Last Name :", class: "last-name-label" %>
+              <%= f.text_field :last_name, required: true, class: "last-name-input" %>
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <%= f.input :level,
-                        required: true,
-                        collection: ['Beginner', 'Intermediate', 'Advanced'],
-                        class: "custom-form-control form-control" %>
+
+          <div class="form-row">
+            <!-- Age Input -->
+            <div class="first-row-field">
+              <%= f.label :age, "Age :", class: "age-label" %>
+              <%= f.number_field :age, required: true, class: "age-input" %>
+            </div>
+
+            <!-- Gender Input -->
+            <div class="second-row-field">
+              <%= f.label :gender, "Gender :", class: "gender-label" %>
+              <%= f.select :gender, ['Male', 'Female'], {}, required: true, class: "gender-input" %>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <%= f.input :bio,
-                      as: :text,
-                      required: false,
-                      class: "custom-form-control form-control" %>
-        </div>
+          <div class="form-row">
+            <!-- Location Input -->
+            <div class="first-row-field">
+              <%= f.label :location, "Location :", class: "location-label" %>
+              <%= f.text_field :location, required: true, class: "location-input" %>
+            </div>
 
-        <div class="form-group submit">
-          <%= f.button :submit, "Next", class: "btn custom-btn-primary" %>
-        </div>
-      <% end %>
+            <!-- Level Input -->
+            <div class="second-row-field">
+              <%= f.label :level, "Level :", class: "level-label" %>
+              <%= f.select :level, ['Beginner', 'Intermediate', 'Advanced'], {}, required: true, class: "level-input" %>
+            </div>
+          </div>
+
+          <!-- Bio Input -->
+          <div class="bio-field">
+            <%= f.label :bio, "Bio :", class: "bio-label" %>
+            <%= f.text_area :bio, class: "bio-input" %>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="new-profile-card-action">
+            <%= f.submit "Next", class: "custom-btn-primary" %>
+          </div>
+        <% end %>
+
+      </div>
     </div>
   </div>
 </div>
-<%= render "shared/footer"%>
