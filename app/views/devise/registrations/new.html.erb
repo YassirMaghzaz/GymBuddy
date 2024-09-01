@@ -1,37 +1,58 @@
-<div class="background">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="card custom-card">
-        <div class="custom-card-header">
-          <h2 class="text-center">Sign Up</h2>
+<div class="container">
+  <div class="row justify-content-center">
+  <div class="sign-up-card">
+    <div class="sign-up-card-header">
+      <h2 class="text-center">Sign Up</h2>
+    </div>
+    <div class="sign-up-card-body">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <% if resource.errors.any? %>
+        <div class="error_notification">
+          <h2><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
         </div>
-        <div class="custom-card-body">
-          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= f.error_notification %>
-            <div class="form-inputs custom-form-inputs">
-              <%= f.input :email,
-                required: true,
-                autofocus: true,
-                class: "custom-form-control form-control",
-                input_html: { autocomplete: "email" } %>
-              <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                class: "form-control custom-form-control",
-                input_html: { autocomplete: "new-password" } %>
-              <%= f.input :password_confirmation,
-                required: true,
-                class: "form-control custom-form-control",
-                input_html: { autocomplete: "new-password" } %>
-            </div>
-            <div class="custom-card-action">
-              <%= link_to "Sign In", new_session_path(resource_name), class: "btn custom-btn-secondary" %>
-              <%= f.button :submit, "Sign Up", class: "btn custom-btn-primary" %>
-            </div>
+      <% end %>
+
+      <div class="sign-up-form-inputs">
+        <div class="field">
+          <%= f.label :email, class: "email-label" %>
+          <%= f.email_field :email,
+                            required: true,
+                            autofocus: false,
+                            class: "email-input",
+                            autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, class: "password-label" %>
+          <%= f.password_field :password,
+                              required: true,
+                              class: "password-input",
+                              autocomplete: "new-password" %>
+          <% if @minimum_password_length %>
+            <small class="hint"><%= @minimum_password_length %> characters minimum</small>
           <% end %>
         </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, class: "confirm-password-label" %>
+          <%= f.password_field :password_confirmation,
+                              required: true,
+                              class: "confirm-password-input",
+                              autocomplete: "new-password" %>
+        </div>
       </div>
+
+      <div class="sign-up-card-action">
+        <%= link_to "Sign In", new_session_path(resource_name), class: "custom-btn-secondary" %>
+        <%= f.submit "Sign Up", class: "custom-btn-primary" %>
+      </div>
+    <% end %>
     </div>
   </div>
 </div>
-<%= render 'shared/footer' %>
+</div>
