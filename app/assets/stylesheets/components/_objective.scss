@@ -1,0 +1,194 @@
+.new-objective-card {
+  width: 60vw;
+  height: 110vh;
+  border-radius: 25px;
+  margin: 40px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #000000 !important;
+  color: white;
+}
+
+.new-objective-card-header {
+  min-width: 100%;
+  max-width: 90%;
+  max-height: 15%;
+  margin: 0 auto;
+}
+
+.new-objective-card-header h2 {
+  text-align: center;
+  font-family: "Alfa Slab One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.new-objective-card-body {
+  min-height: 70%;
+  padding: 10px 20px;
+  max-width: 100%;
+  margin: 0;
+}
+
+.new-objective-form-inputs {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.form-row {
+  min-width: 80%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.progress-field,
+.description-field {
+  min-width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.first-row-field,
+.second-row-field {
+  max-width: 40%;
+  min-width: 40%;
+}
+
+.title-label,
+.status-label,
+.start-at-label,
+.end-at-label,
+.current-weight-label,
+.target-weight-label,
+.progress-label,
+.description-label {
+  color: white;
+  margin-bottom: 10px;
+  font-family: "Prata", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  min-width: 100%;
+  display: block;
+}
+
+.title-input,
+.status-input,
+.current-weight-input,
+.target-weight-input {
+  color: black;
+  background-color: white;
+  border-radius: 25px;
+  min-width: 90%;
+  max-width: 90%;
+  height: 25px;
+  padding: 10px;
+  font-family: "Prata", system-ui;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+#objective_start_at_1i,
+#objective_end_at_1i {
+  color: black !important;
+  background-color: white !important;
+  border-radius: 25px;
+  min-width: 25%;
+  max-width: 25%;
+  height: 25px;
+  padding: 4px;
+  text-align: center;
+}
+
+#objective_start_at_2i,
+#objective_end_at_2i {
+  color: black !important;
+  background-color: white !important;
+  border-radius: 25px;
+  min-width: 40%;
+  max-width: 40%;
+  height: 25px;
+  padding: 4px;
+  text-align: center;
+}
+
+#objective_start_at_3i,
+#objective_end_at_3i {
+  color: black !important;
+  background-color: white !important;
+  border-radius: 25px;
+  min-width: 15%;
+  max-width: 15%;
+  height: 25px;
+  padding: 4px;
+  text-align: center;
+}
+
+.description-input,
+.progress-input {
+  min-width: 96.5%;
+  max-width: 96.5% !important;
+  color: black;
+  background-color: white;
+  border-radius: 25px;
+  padding: 10px;
+  font-family: "Prata", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.description-input {
+  height: 55px;
+}
+
+.progress-input {
+  height: 25px;
+}
+
+.new-objective-card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 80%;
+  margin: 20px auto;
+  font-family: "Stylish", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+input.custom-btn-primary {
+  text-align: center;
+  background-color: #54085a;
+  border-color: #54085a;
+  color: white;
+  border-radius: 25px;
+  min-width: 10vw;
+  max-width: 20vw;
+  padding: 10px 20px;
+}
+
+button.custom-btn-secondary {
+  text-align: center;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #670b70;
+  border-radius: 25px;
+  min-width: 10vw;
+  max-width: 20vw;
+  padding: 10px 20px;
+}
+
+input.custom-btn-primary:hover,
+button.custom-btn-secondary:hover {
+  transition: ease-in 0.3s;
+  transform: scale(1.02);
+}

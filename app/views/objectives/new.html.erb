@@ -1,33 +1,80 @@
-<div class="background">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="card custom-card">
-        <div class="custom-card-header">
-          <h2 class="text-center">Objectives</h2>
-        </div>
-        <div class="custom-card-body">
-          <%= simple_form_for [@profile, @objective] do |f| %>
-            <div class="form-inputs custom-form-inputs">
-              <%= f.input :title %>
-              <%= f.input :status %>
-              <%= f.input :description %>
-              <%= f.input :progress %>
-              <%= f.input :start_at, as: :datetime %>
-              <%= f.input :end_at, as: :datetime %>
-              <%= f.input :target_weight %>
-              <%= f.input :current_weight %>
-              <%= f.input :profile_id, as: :hidden, input_html: { value: current_user.profile.id } %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="new-objective-card">
+      <div class="new-objective-card-header">
+        <h2 class="text-center">Objective</h2>
+      </div>
+      <div class="new-objective-card-body">
+        <%= form_for([@profile, @objective]) do |f| %>
+          <div class="new-objective-form-inputs">
+            <div class="form-row">
+               <!-- Title Input -->
+              <div class="first-row-field">
+                <%= f.label :title, "Title:", class: "title-label" %>
+                <%= f.text_field :title, class: "title-input" %>
+              </div>
+
+              <!-- Status Input -->
+              <div class="second-row-field">
+                <%= f.label :status, "Status:", class: "status-label" %>
+                <%= f.text_field :status, class: "status-input" %>
+              </div>
             </div>
-            <div class="custom-card-action">
-              <% unless params[:step] == '1' %>
-                <%= f.button :button, 'Go Back', type: 'button', onclick: 'history.back()', class: "btn custom-btn-secondary" %>
-              <% end %>
-              <%= f.button :submit, params[:step] == '2' ? 'Send' : 'Next', class: "btn custom-btn-primary" %>
+            <div class="form-row">
+              <!-- Start At Input -->
+              <div class="first-row-field">
+                <%= f.label :start_at, "Start At:", class: "start-at-label" %>
+                <%= f.date_select :start_at, class: "start-at-input" %>
+              </div>
+
+              <!-- End At Input -->
+              <div class="second-row-field">
+                <%= f.label :end_at, "End At:", class: "end-at-label" %>
+                <%= f.date_select :end_at, class: "end-at-input" %>
+              </div>
+            </div>
+             <div class="form-row">
+              <!-- Target Weight Input -->
+              <div class="first-row-field">
+                <%= f.label :target_weight, "Target Weight:", class: "target-weight-label" %>
+                <%= f.text_field :target_weight, class: "target-weight-input" %>
+              </div>
+              <!-- Current Weight Input -->
+              <div class="second-row-field">
+                <%= f.label :current_weight, "Current Weight:", class: "current-weight-label" %>
+                <%= f.text_field :current_weight, class: "current-weight-input" %>
+              </div>
+             </div>
+            <!-- Description Input -->
+            <div class="description-field">
+              <%= f.label :description, "Description:", class: "description-label" %>
+              <%= f.text_area :description, class: "description-input" %>
+            </div>
+
+            <!-- Progress Input -->
+            <div class="progress-field">
+              <%= f.label :progress, "Progress:", class: "progress-label" %>
+              <%= f.text_field :progress, class: "progress-input" %>
+            </div>
+
+            <!-- Profile ID Input (Hidden) -->
+            <%= f.hidden_field :profile_id, value: current_user.profile.id %>
+
           </div>
-          <% end %>
-        </div>
+
+          <div class="new-objective-card-action">
+            <% unless params[:step] == '1' %>
+              <!-- Go Back Button -->
+              <%= button_tag 'Go Back', type: 'button', onclick: 'history.back()', class: "custom-btn-secondary" %>
+            <% end %>
+
+            <!-- Submit Button -->
+            <%= f.submit params[:step] == '2' ? 'Send' : 'Next', class: "custom-btn-primary" %>
+          </div>
+        <% end %>
+
       </div>
     </div>
   </div>
 </div>
-<%= render 'shared/footer' %>
