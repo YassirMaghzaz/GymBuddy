@@ -1,6 +1,7 @@
 class PreferencesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile
+  before_action :set_preference, only: [:edit, :update, :destroy]
 
   def new
     @preference = @profile.preferences.new
@@ -13,6 +14,21 @@ class PreferencesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit; end
+
+  def update
+    if @preference.update(preference_params)
+      redirect_to profile_path(@profile), notice: 'Preferences were successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @preference.destroy
+    redirect_to profile_path(@profile), notice: 'Preferences were successfully deleted.'
   end
 
   private

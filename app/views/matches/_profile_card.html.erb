@@ -1,0 +1,57 @@
+<div class="profile-card">
+  <div class="vertical-box">
+       <%= image_tag 'default_profile_picture.jpg', class: 'profile-photo', alt: 'Default Profile Picture' %>
+    <div class="profile-info">
+      <h2><%= profile.first_name %> <%= profile.last_name %></h2>
+      <div class="profile-info-container">
+        <div class="info-column"><p><%= profile.age %></p></div>
+        <div class="info-column"><p><%= profile.gender %></p></div>
+        <div class="info-column"><p><%= profile.level %></p></div>
+      </div>
+      <p><%= profile.bio %></p>
+    </div>
+  </div>
+  <div class="right-box-container">
+    <div class="top-right-box">
+      <h3>Objective</h3>
+      <% profile.objectives.each do |objective| %>
+        <div class="objective-row">
+          <p><strong>Title:</strong> <%= objective.title %></p>
+          <p><strong>Status:</strong> <%= objective.status %></p>
+        </div>
+        <div class="objective-row">
+          <p class="objective-description"><strong>Description:</strong> <%= objective.description %></p>
+        </div>
+        <div class="objective-row">
+          <p><strong>Progress:</strong></p>
+          <div class="progress-bar">
+            <div class="progress" style="width: <%= objective.date_based_progress %>%;"></div>
+          </div>
+        </div>
+        <div class="objective-row">
+          <p><strong>Start At:</strong> <%= objective.start_at %></p>
+          <p><strong>End At:</strong> <%= objective.end_at %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="bottom-right-box">
+      <h3>Preferences</h3>
+      <div class="preferences-container">
+          <div class="preference-column">
+            <p><strong>Gym:</strong></p>
+            <p><%= profile.gym.name %></p>
+          </div>
+          <% profile.preferences.each do |preference| %>
+            <div class="preference-column">
+              <p><strong>Workout Days:</strong></p>
+              <p><%= preference.workout_days %></p>
+            </div>
+            <div class="preference-column">
+              <p><strong>Workout Type:</strong></p>
+              <p><%= preference.workout_type %></p>
+            </div>
+          <%end%>
+      </div>
+    </div>
+  </div>
+</div>
