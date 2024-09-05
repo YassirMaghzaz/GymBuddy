@@ -40,6 +40,55 @@
   padding: 15px;
 }
 
+.form-row.picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+i.profile-icon {
+  font-size: 50px;
+  margin-top: 10px;
+}
+i.profile-icon:hover {
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  transform: scale(1.02);
+}
+.profile-image-preview {
+  width: 75px; /* Adjust size as needed */
+  height: 75px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.verified-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verified-badge i {
+  margin: 0;
+}
+
+.file-input {
+  display: none; /* Hide the actual file input */
+}
+
 .form-row {
   max-width: 100%;
   margin-bottom: 20px;

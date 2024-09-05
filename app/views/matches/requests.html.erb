@@ -6,7 +6,11 @@
   <% @pending_matches.each do |match| %>
     <% profile = @profiles.find { |p| p.id == match.profile_id } %>
     <div class="request-item">
-      <%#= image_tag profile.profile_image_url, alt: match.full_name %>
+       <% if profile.profile_image && profile.profile_image.image.present?%>
+          <span class="request-infos"><%= image_tag profile.profile_image.image, class: 'profile-photo', alt: 'Profile Picture' %></span>
+      <% else %>
+         <span class="request-infos"><%= image_tag 'default_profile_picture.jpg', class: 'profile-photo', alt: 'Default Profile Picture', crop: :thumb, gravity: :face %></span>
+      <% end %>
       <span class="request-infos"><%=profile.first_name %></span>
       <span class="request-infos"><%=profile.last_name %></span>
       <span class="request-infos"><%=profile.location %></span>

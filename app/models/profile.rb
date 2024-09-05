@@ -2,8 +2,9 @@ class Profile < ApplicationRecord
   belongs_to :user
   validates :user_id, presence: true
 
-  has_one_attached :photo
-
+  #has_one_attached :photo
+  has_one :profile_image, dependent: :destroy
+  
   has_many :objectives
   has_many :preferences
   has_one :gym

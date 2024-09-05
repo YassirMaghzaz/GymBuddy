@@ -9,13 +9,24 @@
       </div>
       <div class="new-profile-card-body">
       <%= form_for(resource, as: resource_name, url: profiles_path, method: :post, html: { multipart: true }) do |f| %>
-          <div class="field picture">
-            <label for="profile_photo" class="picture-upload">
-              <i class="fa fa-camera"></i> Upload
-              <!-- File input for photo -->
-              <%= f.file_field :photo, class: "picture-input", id: "profile_photo" %>
+          <div class="form-row picture">
+            <label for="profile_photo" class="custom-file-upload">
+              <div class="profile-icon-wrapper">
+                <!-- Placeholder for Profile Icon -->
+                <i class="fa-regular fa-user fa-sm profile-icon"  id="default-icon" style="color: #ffffff;"></i>
+                <!-- Image Preview -->
+                <img src="" alt="Profile Image" id="profile-image-preview" class="profile-image-preview" style="display: none;">
+
+                <!-- Verified Badge (initially hidden) -->
+                <div class="verified-badge" style="display: none;">
+                  <i class="fa fa-check"></i>
+                </div>
+              </div>
+
+              <%= f.file_field :photo, class: "file-input", id: "profile_photo", onchange: "handleFileUpload()" %>
             </label>
           </div>
+
 
           <div class="form-row">
             <!-- First Name Input -->
@@ -75,3 +86,33 @@
     </div>
   </div>
 </div>
+<script>
+function handleFileUpload() {
+  const fileInput = document.getElementById('profile_photo');
+  const profileImagePreview = document.getElementById('profile-image-preview');
+  const defaultIcon = document.getElementById('default-icon');
+  const verifiedBadge = document.querySelector('.verified-badge');
+
+  // If a file is selected
+  if (fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    // When the file is read successfully
+    reader.onload = function(e) {
+      profileImagePreview.src = e.target.result;
+      profileImagePreview.style.display = 'block';
+      defaultIcon.style.display = 'none'; // Hide the default icon
+      verifiedBadge.style.display = 'flex'; // Show the verified badge
+    };
+
+    // Read the file as a data URL
+    reader.readAsDataURL(file);
+  } else {
+    profileImagePreview.style.display = 'none';
+    defaultIcon.style.display = 'block'; // Show the default icon
+    verifiedBadge.style.display = 'none'; // Hide the verified badge
+  }
+}
+
+</script>
