@@ -7,10 +7,13 @@ class MatchesController < ApplicationController
 
   def create
     accepted = params[:accepted] == "true"
-    @match = Match.new(profile_id: current_user.profile.id, matched_profile_id: params[:profile_id], status: accepted ? "pending" : "rejected")
-    if @match.save && accepted == true
+    @match = Match.new(profile_id: current_user.profile.id,
+                       matched_profile_id: params[:profile_id],
+                       matcher_id: current_user.profile.id,
+                       status: accepted ? "pending" : "rejected")
+    if @match.save && accepted
       redirect_to request_path
-    elsif accepted == false
+    elsif !accepted
       redirect_to matches_path
     else
       redirect_to matches_path, alert: "Something went wrong."
@@ -42,9 +45,10 @@ class MatchesController < ApplicationController
   end
 
   def buddies
-    @accepted_matches = Match.where(matched_profile_id: current_user.profile.id, status: "accepted")
-    @profiles = Profile.where(id: @accepted_matches.pluck(:profile_id))
+    @accepted_matches = Match.where("(profile_id = :profile_id OR matched_profile_id = :profile_id OR matcher_id = :profile_id) AND status = 'accepted'", profile_id: current_user.profile.id)
+    @profiles = Profile.where(id: @accepted_matches.pluck(:profile_id, :matched_profile_id, :matcher_id).flatten.uniq)
   end
+
 
   private
 

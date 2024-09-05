@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_01_131327) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_05_154739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_131327) do
     t.datetime "updated_at", null: false
     t.integer "profile_id"
     t.integer "matched_profile_id"
+    t.integer "matcher_id"
     t.index ["matched_profile_id"], name: "index_matches_on_matched_profile_id"
     t.index ["profile_id", "matched_profile_id"], name: "index_matches_on_profile_id_and_matched_profile_id", unique: true
     t.index ["profile_id"], name: "index_matches_on_profile_id"
@@ -133,6 +134,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_131327) do
   add_foreign_key "gyms", "profiles"
   add_foreign_key "matches", "profiles"
   add_foreign_key "matches", "profiles", column: "matched_profile_id"
+  add_foreign_key "matches", "profiles", column: "matcher_id"
   add_foreign_key "objectives", "profiles"
   add_foreign_key "preferences", "profiles"
   add_foreign_key "profile_images", "profiles"
