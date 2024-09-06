@@ -15,14 +15,14 @@
   color: white;
   font-family: "Alfa Slab One", serif;
   font-size: 1.5em;
-  font-weight:400;
+  font-weight: 400;
   margin-left: 15px;
   padding: 0 10px;
 }
 
 .nav-btn {
+  margin-top: 7px;
   color: white;
-  padding: 0 10px;
   margin-right: 20px;
   font-family: "Stylish", serif;
   font-size: 1.3em;
@@ -31,7 +31,18 @@
 }
 
 .nav-btn:hover {
-  color:blueviolet;
+  color: blueviolet;
   transition: ease-in;
   transform: scale(1.05);
+}
+
+.profile-photo-nav {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  margin-right: 20px;
+  font-size: 1.3em;
+
 }
