@@ -26,6 +26,12 @@
               <%= form.submit "Accept", class: "accept-btn"%>
             <% end %>
           </div>
-        <% end %>
+        <% elsif @match.status == "accepted"%>
+          <div class="action-buttons">
+            <%= button_to "Delete", profile_matches_path(@profile, accepted: false), method: :post,  class: "refuse-btn" %>
+            <%= button_to "Chat", profile_matches_path(@profile, accepted: true), method: :post, class: "match-btn" %>
+          </div>
+        <%end%>
       </div>
-  <%end%>
+  </div>
+<% end %>
