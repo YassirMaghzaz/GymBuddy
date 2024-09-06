@@ -1,0 +1,24 @@
+<div>
+  <div class="heading">
+    <h1>Requests</h1>
+  </div>
+  <div class="requests-list">
+  <% @pending_matches.each do |match| %>
+    <% profile = @profiles.find { |p| p.id == match.profile_id } %>
+    <div class="request-item">
+       <% if profile.profile_image && profile.profile_image.image.present?%>
+          <span class="request-infos"><%= image_tag profile.profile_image.image, class: 'profile-photo', alt: 'Profile Picture' %></span>
+      <% else %>
+         <span class="request-infos"><%= image_tag 'default_profile_picture.jpg', class: 'profile-photo', alt: 'Default Profile Picture', crop: :thumb, gravity: :face %></span>
+      <% end %>
+      <span class="request-infos"><%=profile.first_name %></span>
+      <span class="request-infos"><%=profile.last_name %></span>
+      <span class="request-infos"><%=profile.location %></span>
+      <span class="request-infos"><%=profile.level %></span>
+      <%= link_to details_profile_matches_path(profile, match_id: match.id), method: :get, class:"infos-btn" do %>
+        <i class="fa-solid fa-circle-info  fa-2x"></i>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>

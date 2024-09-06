@@ -1,0 +1,27 @@
+<div>
+  <div class="heading">
+    <h1>Buddies</h1>
+  </div>
+  <div class="buddies-list">
+    <% @accepted_matches.each do |match| %>
+      <% profile = @profiles.find { |p| p.id == match.profile_id } %>
+      <div class="buddy-item">
+        <% if profile.profile_image && profile.profile_image.image.present?%>
+          <span class="buddy-infos"><%= image_tag profile.profile_image.image, class: 'profile-photo', alt: 'Profile Picture' %></span>
+        <% else %>
+           <span class="buddy-infos"><%= image_tag 'default_profile_picture.jpg', class: 'profile-photo', alt: 'Default Profile Picture', crop: :thumb, gravity: :face %></span>
+        <% end %>
+        <span class="buddy-infos"><%=profile.first_name %></span>
+        <span class="buddy-infos"><%=profile.last_name %></span>
+        <span class="buddy-infos"><%=profile.location %></span>
+        <span class="buddy-infos"><%=profile.level %></span>
+        <%= button_to profile_match_path(profile, match), method: :delete, class: "remove-btn" do %>
+          <i class="fa-solid fa-user-minus fa-2x"></i>
+        <% end %>
+        <%= link_to details_profile_matches_path(profile, match_id: match.id), method: :get, class: "infos-btn" do %>
+          <i class="fa-solid fa-circle-info fa-2x"></i>
+        <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>

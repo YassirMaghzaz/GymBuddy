@@ -2,34 +2,47 @@
   background-color: black;
   color: white;
   height: 7vh;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 25px 25px;
   position: relative;
   z-index: 5;
 }
 
 .logo {
   color: white;
-  font-family: Quicksand;
-  font-size: 1.2em;
-  font-weight:400;
-}
-
-.auth-btn {
-  color: white;
-  background: none;
+  font-family: "Alfa Slab One", serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  margin-left: 15px;
   padding: 0 10px;
-  border: none;
-  font-family: Quicksand;
-  font-size: 1em;
-  cursor: pointer;
 }
 
-.auth-btn:hover {
-  color: #69207B;
-  background-color: white;
-  border-radius: 15px;
+.nav-btn {
+  margin-top: 7px;
+  color: white;
+  margin-right: 20px;
+  font-family: "Stylish", serif;
+  font-size: 1.3em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-btn:hover {
+  color: blueviolet;
+  transition: ease-in;
+  transform: scale(1.05);
+}
+
+.profile-photo-nav {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  margin-right: 20px;
+  font-size: 1.3em;
+
 }

@@ -1,0 +1,25 @@
+
+
+  <% if @profile.blank?%>
+    <div class="notice-card">
+      <div class="notice-card-content">
+        <p>There are no available profiles for you right now<br> Please check back later. 🙃</p>
+      </div>
+    </div>
+  <%else%>
+  <div class="find-my-match">
+      <div class="heading">
+    <h1>Find Your Match</h1>
+  </div>
+  <div class="profile-container">
+    <div class="row-container">
+      <%= render partial: 'profile_card', locals: { profile: @profile } %>
+    </div>
+    <div class="action-buttons">
+      <%= button_to "Skip", profile_matches_path(@profile, accepted: false), method: :post,  class: "skip-btn" %>
+      <%= button_to "Match", profile_matches_path(@profile, accepted: true), method: :post, class: "match-btn" %>
+    </div>
+  </div>
+
+  <%end%>
+  </div>

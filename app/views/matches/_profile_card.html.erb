@@ -1,0 +1,61 @@
+<div class="profile-card">
+  <div class="vertical-box">
+   <% if profile.profile_image && profile.profile_image.image.present? %>
+      <%= image_tag profile.profile_image.image, class: 'profile-photo', alt: 'Profile Picture' %>
+    <% else %>
+      <%= image_tag 'default_profile_picture.jpg', class: 'profile-photo', alt: 'Default Profile Picture' %>
+    <% end %>
+    <div class="profile-info">
+      <h2 class="prata-regular"><%= profile.first_name %> <%= profile.last_name %></h2>
+      <div class="profile-info-container">
+        <div class="info-column"><p class="prata-regular"><%= profile.age %></p></div>
+        <div class="info-column"><p class="prata-regular"><%= profile.gender %></p></div>
+        <div class="info-column"><p class="prata-regular"><%= profile.level %></p></div>
+      </div>
+      <p class="prata-regular"><%= profile.bio %></p>
+    </div>
+  </div>
+  <div class="right-box-container">
+    <div class="top-right-box">
+      <h3 class="fredericka-the-great-regular"><em>Objective</em></h3>
+      <% profile.objectives.each do |objective| %>
+        <div class="objective-row">
+          <p class="prata-regular"><b>Title:</b> <span class="prata-regular"><%= objective.title %></span> </p>
+          <p class="prata-regular"><b>Status:</b> <span class="prata-regular"><%= objective.status %></span></p>
+        </div>
+        <div class="objective-row">
+          <p class="objective-description prata-regular"><b>Description: </b><p class="prata-regular"><%= objective.description %></p></p>
+        </div>
+        <div class="objective-row">
+          <p class="prata-regular"><b>Progress</b></p>
+          <div class="progress-bar">
+            <div class="progress" style="width: <%= objective.progress %>%;"></div>
+          </div>
+        </div>
+        <div class="objective-row">
+          <p class="prata-regular"><b>Start At: </b> <span class="prata-regular"><%= objective.start_at %></span></p>
+          <p class="prata-regular"><b>End At: </b> <span class="prata-regular"><%= objective.end_at %></span></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="bottom-right-box">
+      <h3 class="fredericka-the-great-regular"> <em>Preferences</em></h3>
+      <div class="preferences-container">
+          <div class="preference-column">
+            <p class="prata-regular"><b>Gym:</b></p>
+            <p class="prata-regular"><%= profile.gym.name %></p>
+          </div>
+          <% profile.preferences.each do |preference| %>
+            <div class="preference-column">
+              <p class="prata-regular"><b>Workout Days:</b></p>
+              <p class="prata-regular"><%= preference.workout_days %></p>
+            </div>
+            <div class="preference-column">
+              <p class="prata-regular"><b>Workout Type:</b></p>
+              <p class="prata-regular"><%= preference.workout_type %></p>
+            </div>
+          <%end%>
+      </div>
+    </div>
+  </div>
+</div>

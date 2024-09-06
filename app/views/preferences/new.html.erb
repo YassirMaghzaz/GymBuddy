@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="new-preferences-card"">
+      <div class="new-preferences-card-header">
+        <h2 class="text-center">Preferences</h2>
+      </div>
+      <div class="new-preferences-card-body">
+        <%= form_for([@profile, @preference]) do |f| %>
+        <div class="new-preferences-form-inputs">
+
+          <!-- Workout Days Input -->
+          <div class="field">
+            <%= f.label :workout_days, "Workout Days", class: "workout-days-label" %>
+            <%= f.text_field :workout_days, required: true, class: "workout-days-input" %>
+          </div>
+
+          <!-- Workout Type Select Input -->
+          <div class="field">
+            <%= f.label :workout_type, "Workout Type", class: "workout-type-label" %>
+            <%= f.select :workout_type,
+                        ["Cardio", "Strength", "HIIT", "Plyometrics", "Yoga", "Pilates", "CrossFit", "Circuit", "Functional", "Martial Arts"],
+                        {},
+                        { required: true, class: "workout-type-input" } %>
+          </div>
+        </div>
+
+        <div class="new-preferences-card-action">
+          <% unless params[:step] == '1' %>
+              <!-- Go Back Button -->
+              <%= button_tag 'Go Back', type: 'button', onclick: 'history.back()', class: "custom-btn-secondary" %>
+            <% end %>
+
+            <!-- Submit Button -->
+            <%= f.submit params[:step] == '2' ? 'Send' : 'Next', class: "custom-btn-primary" %>
+        </div>
+      <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

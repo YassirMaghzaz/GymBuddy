@@ -1,6 +1,6 @@
-class CreateObjectifs < ActiveRecord::Migration[7.1]
+class CreateObjectives < ActiveRecord::Migration[7.1]
   def change
-    create_table :objectifs do |t|
+    create_table :objectives do |t|
       t.string :title
       t.text :description
       t.string :status

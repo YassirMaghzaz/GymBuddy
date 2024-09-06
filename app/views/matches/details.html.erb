@@ -1,0 +1,37 @@
+
+  <% if @profile.blank?%>
+    <div class="notice-card">
+      <div class="notice-card-content">
+        <p>There are no available details for this profile right now<br> Please check back later. 🙃</p>
+      </div>
+    </div>
+  <%else%>
+  <div class="find-my-match">
+      <div class="heading">
+        <h1 class="stylish-regular">Profile Details</h1>
+      </div>
+      <div class="profile-container">
+        <div class="row-container">
+           <%= render partial: 'profile_card', locals: { profile: @profile } %>
+        </div>
+        <% if @match.status == "pending"%>
+          <div class="action-buttons">
+            <%= form_with url: reject_profile_match_path(@profile, @match), method: :patch, local: true do |form| %>
+              <%= form.hidden_field :accepted, value: true %>
+              <%= form.submit "Refuse", class: "refuse-btn" %>
+            <% end %>
+
+            <%= form_with url: accept_profile_match_path(@profile, @match), method: :patch, local: true do |form| %>
+              <%= form.hidden_field :accepted, value: false %>
+              <%= form.submit "Accept", class: "accept-btn"%>
+            <% end %>
+          </div>
+        <% elsif @match.status == "accepted"%>
+          <div class="action-buttons">
+            <%= button_to "Delete", profile_matches_path(@profile, accepted: false), method: :post,  class: "refuse-btn" %>
+            <%= button_to "Chat", profile_matches_path(@profile, accepted: true), method: :post, class: "match-btn" %>
+          </div>
+        <%end%>
+      </div>
+  </div>
+<% end %>
