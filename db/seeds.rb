@@ -16,8 +16,6 @@
 
 # db/seeds.rb
 
-require 'faker'
-
 # Clear existing data
 User.destroy_all
 Profile.destroy_all
@@ -27,73 +25,113 @@ Objective.destroy_all
 Preference.destroy_all
 ProfileImage.destroy_all
 
-# Create users and profiles
-10.times do |i|
-  user = User.create!(
-    email: Faker::Internet.email,
-    password: 'password123',
-    password_confirmation: 'password123'
-  )
+require 'cloudinary'
+require 'cloudinary/uploader'
+require 'cloudinary/utils'
 
-  profile = Profile.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    age: rand(18..65),
-    gender: ['Male', 'Female', 'Other'].sample,
-    location: Faker::Address.city,
-    bio: Faker::Lorem.paragraph,
-    availability: 'Weekdays 6-8 AM, Weekends 8-10 AM',
-    level: ['Beginner', 'Intermediate', 'Advanced'].sample,
-    user_id: user.id
-  )
+# Create users with emails and passwords
+users_data = [
+  { email: "fatima@email.com", password: "password123" },
+  { email: "amine@email.com", password: "password123" },
+  { email: "sara@email.com", password: "password123" }
+]
 
-  # Create a gym associated with the profile
-  Gym.create!(
-    name: "#{Faker::Company.name} Gym",
-    address: Faker::Address.street_address,
-    city: profile.location,
-    country: Faker::Address.country,
-    profile_id: profile.id
-  )
-
-  # Create an objective for the profile
-  Objective.create!(
-    title: "Lose #{rand(5..15)} kg",
-    description: Faker::Lorem.sentence,
-    status: ['In Progress', 'Completed', 'Pending'].sample,
-    progress: rand(0..100),
-    start_at: Faker::Date.backward(days: 60),
-    end_at: Faker::Date.forward(days: 60),
-    target_weight: rand(60..90),
-    current_weight: rand(70..100),
-    profile_id: profile.id
-  )
-
-  # Create preferences for the profile
-  Preference.create!(
-    workout_days: ['Monday', 'Wednesday', 'Friday'].sample,
-    workout_type: ['Cardio', 'Strength', 'Flexibility'].sample,
-    profile_id: profile.id
-  )
-
-  # Create a profile image
-  ProfileImage.create!(
-    profile_id: profile.id,
-    image: Faker::Avatar.image(slug: profile.first_name.downcase, size: "100x100", format: "png")
-  )
+# Create users
+users = users_data.map do |user_data|
+  User.create!(user_data)
 end
 
-# Create some matches between profiles
-profiles = Profile.all
-profiles.each do |profile|
-  2.times do
-    matched_profile = profiles.where.not(id: profile.id).sample
-    Match.create!(
-      profile_id: profile.id,
-      matched_profile_id: matched_profile.id,
-      status: ['pending', 'accepted', 'rejected'].sample
-    )
-  end
+# Create profiles
+profiles_data = [
+  {
+    first_name: "Fatima",
+    last_name: "El Aouni",
+    age: 27,
+    gender: "female",
+    location: "Casablanca",
+    bio: "Fitness enthusiast and healthy lifestyle advocate.",
+    availability: "Monday to Friday",
+    level: "Intermediate",
+    user_id: users[0].id
+  },
+  {
+    first_name: "Amine",
+    last_name: "Bennani",
+    age: 30,
+    gender: "male",
+    location: "Rabat",
+    bio: "Bodybuilding lover, ready to share tips.",
+    availability: "Every day",
+    level: "Advanced",
+    user_id: users[1].id
+  },
+  {
+    first_name: "Sara",
+    last_name: "Bekkali",
+    age: 24,
+    gender: "female",
+    location: "Casablanca",
+    bio: "Loves yoga and meditation.",
+    availability: "Weekends",
+    level: "Beginner",
+    user_id: users[2].id
+  }
+]
+
+# Create profiles
+profiles = profiles_data.map do |profile_data|
+  Profile.create!(profile_data)
 end
+
+# Upload images to Cloudinary and associate with profiles
+profile_images_data = [
+  { profile: profiles[0], image_url: "https://images.unsplash.com/photo-1521566652839-697aa473761a?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { profile: profiles[1], image_url: "https://images.unsplash.com/photo-1519713880332-91cfe19a59dd?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { profile: profiles[2], image_url: "https://images.unsplash.com/photo-1619365734050-cb5e64a42d43?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTU5fHxwZXJzb258ZW58MHx8MHx8fDI%3D" }
+]
+
+# Associate Cloudinary images with profiles
+profile_images_data.each do |data|
+  uploaded_image = Cloudinary::Uploader.upload(data[:image_url])
+  # Create a ProfileImage record with the uploaded Cloudinary URL
+  ProfileImage.create!(profile: data[:profile], image: uploaded_image['url'])
+end
+
+# Create gyms for profiles
+gyms_data = [
+  { name: "Passage Fitness", address: "123 Fitness St", city: "Casablanca", country: "Morocco", profile_id: profiles[0].id },
+  { name: "Anytime Fitness", address: "456 Workout Ave", city: "Rabat", country: "Morocco", profile_id: profiles[1].id },
+  { name: "Passage Fitness", address: "123 Fitness St", city: "Casablanca", country: "Morocco", profile_id: profiles[2].id }
+]
+
+# Create gyms
+gyms = gyms_data.map do |gym_data|
+  Gym.create!(gym_data)
+end
+
+# Create preferences for profiles
+preferences_data = [
+  { workout_days: "Monday, Wednesday, Friday", workout_type: "Strength Training", profile_id: profiles[0].id },
+  { workout_days: "Every day", workout_type: "Bodybuilding", profile_id: profiles[1].id },
+  { workout_days: "Saturday, Sunday", workout_type: "Yoga", profile_id: profiles[2].id }
+]
+
+# Create preferences
+preferences_data.each do |preference_data|
+  Preference.create!(preference_data)
+end
+
+# Create objectives for profiles
+objectives_data = [
+  { title: "Lose weight", description: "I want to lose 5kg within 3 months.", status: "active", progress: 20.0, start_at: Date.today, end_at: Date.today + 3.months, target_weight: 70.0, current_weight: 75.0, profile_id: profiles[0].id },
+  { title: "Gain muscle mass", description: "Looking to gain 10kg of muscle.", status: "active", progress: 50.0, start_at: Date.today, end_at: Date.today + 6.months, target_weight: 90.0, current_weight: 80.0, profile_id: profiles[1].id },
+  { title: "Improve flexibility", description: "Increase flexibility through yoga.", status: "active", progress: 10.0, start_at: Date.today, end_at: Date.today + 2.months, target_weight: nil, current_weight: nil, profile_id: profiles[2].id }
+]
+
+# Create objectives
+objectives_data.each do |objective_data|
+  Objective.create!(objective_data)
+end
+
 
 puts "Seed data created successfully!"
